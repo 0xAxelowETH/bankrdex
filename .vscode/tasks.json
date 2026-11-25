@@ -1,0 +1,60 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Supabase (local): serve",
+      "detail": "Postgres + PostgREST + /rest/v1 gateway on 127.0.0.1:54321",
+      "type": "npm",
+      "script": "db:serve",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "local-supabase",
+        "pattern": { "regexp": "^__never__$" },
+        "background": { "activesBegin": true, "beginsPattern": "^Postgres on", "endsPattern": "API server listening" }
+      }
+    },
+    {
+      "label": "BankrDex: indexer",
+      "detail": "On-chain swaps, launches and prices for Bankr tokens on Base",
+      "type": "npm",
+      "script": "indexer",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "indexer",
+        "pattern": { "regexp": "^__never__$" },
+        "background": { "activesBegin": true, "beginsPattern": "indexer starting", "endsPattern": "blocks [0-9]+-[0-9]+" }
+      }
+    },
+    {
+      "label": "BankrDex: dev (LAN)",
+      "detail": "next dev on 0.0.0.0:3000",
+      "type": "npm",
+      "script": "dev",
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "next",
+        "pattern": { "regexp": "^__never__$" },
+        "background": { "activesBegin": true, "beginsPattern": "Next[.]js", "endsPattern": "Ready in" }
+      }
+    },
+    {
+      "label": "BankrDex: start all",
+      "detail": "Local Supabase, the indexer, then the app",
+      "dependsOrder": "sequence",
+      "dependsOn": ["Supabase (local): serve", "BankrDex: indexer", "BankrDex: dev (LAN)"],
+      "problemMatcher": []
+    },
+    {
+      "label": "Supabase (local): stop",
+      "type": "npm",
+      "script": "db:stop",
+      "problemMatcher": []
+    },
+    {
+      "label": "Supabase (local): psql",
+      "type": "npm",
+      "script": "db:psql",
+      "problemMatcher": []
+    }
+  ]
+}

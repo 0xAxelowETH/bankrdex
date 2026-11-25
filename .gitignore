@@ -1,0 +1,17 @@
+node_modules/
+.next/
+build/
+dist/
+coverage/
+.DS_Store
+*.log
+.env*
+!.env.example
+
+.vercel
+
+# On-chain backfill output (large; imported into Supabase instead)
+/data/
+
+# TypeScript incremental build cache
+*.tsbuildinfo

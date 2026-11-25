@@ -1,0 +1,45 @@
+{
+  "name": "bankrdex",
+  "private": true,
+  "license": "MIT",
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --hostname 0.0.0.0 --port 3000",
+    "local": "node scripts/dev-all.mjs",
+    "build": "next build",
+    "start": "next start --hostname 0.0.0.0 --port 3000",
+    "clean": "node -e \"require('node:fs').rmSync('.next', { recursive: true, force: true })\"",
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit",
+    "db:init": "node scripts/local-supabase.mjs init",
+    "db:serve": "node scripts/local-supabase.mjs serve",
+    "db:stop": "node scripts/local-supabase.mjs stop",
+    "db:psql": "node scripts/local-supabase.mjs psql",
+    "db:import": "node scripts/import-bankr-launches.mjs data/bankr-launches.ndjson",
+    "db:merge": "node scripts/merge-migrations.mjs",
+    "indexer": "node scripts/indexer.mjs"
+  },
+  "dependencies": {
+    "@sentry/nextjs": "^11.5.0",
+    "@tailwindcss/postcss": "^4.3.3",
+    "@vercel/analytics": "^2.0.1",
+    "@walletconnect/ethereum-provider": "^2.25.0",
+    "lightweight-charts": "^5.2.1",
+    "lucide-react": "^0.546.0",
+    "next": "^16.0.0",
+    "react": "^19.0.1",
+    "react-dom": "^19.0.1",
+    "viem": "^2.57.2",
+    "zod": "^4.6.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.11"
+  }
+}
